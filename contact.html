@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+
+    <link rel="stylesheet" href="contact.css">
+    <!--подключение шрифта-->
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+     <!--подключение иконок-->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+      <!--lightgallery link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lightgallery.min.css">
+    <!--close icons link-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <script src="js/jquery.js"></script>
+</head>
+
+<body>
+
+    <!--header start-->
+
+    <header>
+        <!--создание списка меню-->
+    <a href="#" class="logo"><i class="fa-solid fa-dumbbell"></i> Fitness Gym</a>
+
+    <div id="menu-bar" class="fas fa-bars"></div>
+
+    <ul class="navbar">
+        <li><a href="index.html">главная</a></li>
+        <li><a href="about.html">о нас</a></li>
+        <li><a href="join.html">присоединиться</a></li>
+        <li><a href="team.html">команда</a></li>
+        <li><a href="contact.html">контакты</a></li>
+    </ul>
+    </header>
+
+    <!--header end-->
+
+
+    <!--CONTACTS BANNER SECTION START-->
+    <section class="contacts-banner">
+        <div class="content">
+            <h2>Связаться с нами</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus suscipit unde officiis reiciendis omnis distinctio earum temporibus, modi nam nihil totam fugit, quisquam illo ipsam voluptate impedit corrupti provident nisi eligendi, culpa alias ea! Sed nemo accusantium mollitia qui saepe!</p>
+            <a href="join.html" class="btn">Начать сейчас</a>
+        </div>
+    </section>
+    <!--CONTACTS BANNER SECTION END-->
+
+
+    <!--contacts informaition section start-->
+    <section class="contacts-info">
+        <div class="box-container">
+            <div class="box">
+                <h3>Адресс</h3>
+                <address>Москва</address>
+                <address>Абрамцевская, 15</address>
+            </div>
+            
+            <div class="box">
+                <h3>Время работы</h3>
+                <p>Понедельник - Суббота</p>
+                <p>7:00 - 21:00</p>
+                <p>Воскресенье</p>
+                <p>10:00 - 18:00</p>
+            </div>
+
+            <div class="box">
+                <h3>Телефон</h3>
+                <p>+7(913)567-34-08</p>
+                <p>+7(913)567-34-09</p>
+            </div>
+        </div>
+    </section>
+    <!--contacts informaition section end-->
+   
+    
+    <!--contacts form section start--> 
+    <section class="get-in-touch">
+        
+            <form action="" method="POST" class="form" id="form_o">
+                <input type="hidden" name="access_key" value="b66b707d-9b39-4faf-bfcf-f27909eb646c">
+                <!-- <div class="form" id="form"> -->
+                    <input type="text" name="Имя"  placeholder="Введите имя" id="nameInput" autocomplete="off">
+                    <input type="tel" name="Телефон"   placeholder="Введите телефон" id="Phone" class="art-stranger" autocomplete="off">
+                    <textarea cols="30" name="Сообщение" rows="10" placeholder="Введите сообщение" id="messageTexAria" autocomplete="off"></textarea>
+                    <input type="submit" class="btn" id="open-modal-btn">Отправить
+                    <!-- <button class="btn" type="submit" id="open-modal-btn" onclick="clearSearch()">Отправить</button>при нажатии открывается модальное окно -->
+                    <div id="result"></div>
+                <!-- </div> -->
+            </form>
+            <script>
+                const form = document.getElementById('form_o');
+                const result = document.getElementById('result');
+                
+                form.addEventListener('submit', function(e) {
+                    const formData = new FormData(form);
+                    e.preventDefault();
+                
+                    const object = Object.fromEntries(formData);
+                    const json = JSON.stringify(object);
+                
+                    result.innerHTML = "Please wait..."
+                
+                    fetch('https://api.web3forms.com/submit', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            }, 
+                            body: json
+                        })
+                        .then(async (response) => {
+                            let json = await response.json();
+                            if (response.status == 200) {
+                                result.innerHTML = json.message;
+                            } else {
+                                console.log(response);
+                                result.innerHTML = json.message;
+                            }
+                        })
+                        .catch(error => {
+                            console.log(error);
+                            result.innerHTML = "Something went wrong!";
+                        })
+                        .then(function() {
+                            form.reset();
+                            setTimeout(() => {
+                                result.style.display = "none";
+                            }, 3000);
+                        });
+                });
+                </script>
+       <!-- modal window start--> 
+       <div class="modal" id="my-modal">
+        <div class="modal-box">
+            <button id="close-my-modal-btn" class="material-symbols-outlined">close</button>
+            <!--<span class="material-symbols-outlined">close</span>-->
+            <h2><span>Спасибо,</span> что выбрали нас !</h2>
+            <p>Скоро с вами свяжется администратор &#128522;</p>
+        </div>
+    </div> 
+<!--modal window end -->
+    </section>
+    <!--contacts form section end--> 
+
+
+     <!--footer section start-->
+     <section class="footer">
+        <div class="menu">
+            <a href="index.html" class="btn">главная</a>
+            <a href="about.html" class="btn">о нас</a>
+            <a href="join.html" class="btn">присоединиться</a>
+            <a href="team.html" class="btn">команда</a>
+            <a href="contact.html" class="btn">контакты</a>
+        </div>
+        <h3 class="copyright">разработали <span>Горченко Елизавета, Бородаева Анастасия</span></h3>
+    </section>
+
+<!--footer section end-->
+
+        <!--light gallery script link-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/lightgallery.min.js"></script>
+
+    <script src="script.js"></script>
+
+    <script src="js/maska-nomera.js" type="text/javascript" ></script>
+
+    <script>
+    $('.art-stranger').mask('+7 (999) 999-99-99');
+
+    $.fn.setCursorPosition = function(pos) {
+    if ($(this).get(0).setSelectionRange) {
+    $(this).get(0).setSelectionRange(pos, pos);
+    } else if ($(this).get(0).createTextRange) {
+    var range = $(this).get(0).createTextRange();
+    range.collapse(true);
+    range.moveEnd('character', pos);
+    range.moveStart('character', pos);
+    range.select();
+    }
+    };
+
+
+    $('input[type="tel"]').click(function(){
+    $(this).setCursorPosition(4);  // set position number
+    });
+    </script>
+
+
+
+</body>
+</html>
+ 
