@@ -43,6 +43,42 @@ document.getElementById("close-my-modal-btn").addEventListener("click", function
 })
 /*модальное окно закрытие конец*/
 
+/*модальное окно базовое открытие начало*/
+document.getElementById("open-modal-basic").addEventListener("click", function() {
+    document.getElementById("my-modal-basic").classList.add("open")
+})
+/*модальное окно базовое открытие конец*/
+
+/*модальное окно базовое закрытие начало*/
+document.getElementById("close-my-modal-basic").addEventListener("click", function() {
+    document.getElementById("my-modal-basic").classList.remove("open")
+})
+/*модальное окно базовое закрытие конец*/
+
+/*модальное окно стандарт открытие начало*/
+document.getElementById("open-modal-standart").addEventListener("click", function() {
+    document.getElementById("my-modal-standart").classList.add("open")
+})
+/*модальное окно стандарт открытие конец*/
+
+/*модальное окно стандарт закрытие начало*/
+document.getElementById("close-my-modal-standart").addEventListener("click", function() {
+    document.getElementById("my-modal-standart").classList.remove("open")
+})
+/*модальное окно стандарт закрытие конец*/
+
+/*модальное окно премиум открытие начало*/
+document.getElementById("open-modal-premium").addEventListener("click", function() {
+    document.getElementById("my-modal-premium").classList.add("open")
+})
+/*модальное окно премиуи открытие конец*/
+
+/*модальное окно премиуи закрытие начало*/
+document.getElementById("close-my-modal-premium").addEventListener("click", function() {
+    document.getElementById("my-modal-premium").classList.remove("open")
+})
+/*модальное окно премиум закрытие конец*/
+
 /*??????reset form start????????????? переделать*/
 function clearSearch() {
     document.getElementById('nameInput').value = '';
@@ -55,35 +91,3 @@ function cleaSearch() {
     document.getElementById('email').value = '';
 }
 /*????????reset form end???????? переделать*/
-
-// валидация начало
-  // валидация начало
-// function validation(form) {
-    
-//     form.querySelectorAll('input').forEach()
-// }
-
-
-// document.getElementById('form-add').addEventListener('submit',function(event){
-//     event.preventDefault()
-
-//     validation(this)
-
-// })
-//валидация конец
-// валидация конец
-
-/*Pop up начало */
-const openPopUp = document.getElementById('open_pop_up');
-const closePopUp = document.getElementById('pop_up_close');
-const popUp = document.getElementById('pop_up');
-
-openPopUp.addEventListener('clic', function(e){
-    e.preventDefault();
-    popUp.classList.add('active');
-})
-
-closePopUp.addEventListener('click', () => {
-    popUp.classList.remove('active');
-})
-/*Pop up конуц */
